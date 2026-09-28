@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Content</title>
+
+    <style>
+        /* Styling to the div containing the iframe. Mostly to resize and smooth the edges. */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling to the iframe itself. This ensures it sits as intended within the container and fills as much as possible. */
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .iframe-container {
+                padding-bottom: 75%; /* Adjust aspect ratio for mobile */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Contact Us
+        </h1>
+    </header>
+
+    <main>
+        <section>
+            <div>
+                <h2>
+                    Our Location
+                </h2>
+            </div>
+
+            <div class="iframe-container">
+                <!-- An iframe containing an embedded Google Maps location to allow the user to see 'our' location & obtain directions if need be. -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60548.39466420952!2d-77.94598189151085!3d18.471213759449153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eda2a5dfd77e2b1%3A0xfcd69adb5acc5766!2sMontego%20Bay%2C%20Jamaica!5e0!3m2!1sen!2sus!4v1790615569294!5m2!1sen!2sus"
+                    title="Google Maps Location"
+                    width="600"
+                    height="450"
+                    loading="lazy"
+                    allowfullscreen=""
+                    referrerpolicy="no-referrer-when-downgrade"
+                    sandbox="allow-scripts allow-same-origin allow-popups">
+                    <p>Your browser does not support iframes. Please visit our <a href="location-link">location page</a>.</p>
+                </iframe>
+            </div>
+
+            <!-- Controls using JavaScript to give the user the ability to reload the contents of the iframe & toggle fullscreen. -->
+            <div class="iframe-controls">
+                <button onclick="reloadFrame()">Reload Content</button>
+                <button onclick="toggleFullscreen()">Fullscreen</button>
+            </div>
+
+            <!-- The above-mentioned JavaScript that determines the functions and how they link to the buttons and iframe element. -->
+            <script>
+                function reloadFrame() {
+                    const frame = document.querySelector('iframe');
+                    frame.src = frame.src;
+                }
+
+                function toggleFullscreen() {
+                    const frame = document.querySelector('iframe');
+                    if (frame.requestFullscreen) {
+                        frame.requestFullscreen();
+                    }
+                }
+            </script>
+
+            <div>
+                <aside>
+                    Would would advise avoiding rush-hour times due to the high volumes of traffic in the immediate area.
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            Thanks for visiting!
+        </p>
+    </footer>
+</body>
+</html>
